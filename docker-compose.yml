@@ -1,0 +1,20 @@
+# Optional: Run n8n locally alongside the app
+# Usage: docker compose up -d
+# Then import your n8n workflows at http://localhost:5678
+
+services:
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=America/Chicago
+      - TZ=America/Chicago
+      - N8N_SECURE_COOKIE=false
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./local-files:/files
+
+volumes:
+  n8n_data:
